@@ -73,3 +73,24 @@ for (const {name, age} of people) {
     console.log(age);
 }
 
+
+let [name2, ...rest] = ['tim', 10, 'la']
+
+console.log(name2) // tim
+console.log(rest) // [10, 'la']
+
+let person1 = {
+    name: "steve",
+    age: 1,
+    region: 'busan'
+}
+
+let person2 = {
+    ...person1,
+    name: "bill"
+}
+console.log(person1)
+console.log(person2)
+
+let paul = (name, age) => `${name}은 ${age}살`;
+console.log(paul("paul", 10))
