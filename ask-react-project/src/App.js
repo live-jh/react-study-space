@@ -1,11 +1,13 @@
 import 'App.css';
-import Counter from "./Counter";
+// import Counter from "./component/Counter";
+import Counter_2 from "./component/Counter_2";
 
 function App() {
     return (
         <div className="App">
             <h1>Hello world</h1>
-            <Counter initValue={10}/>
+            <Counter_2/>
+            {/*<Counter initValue={10}/>*/}
             {/*<header className="App-header">*/}
             {/*  <img src={logo} className="App-logo" alt="logo" />*/}
             {/*  <p>*/}

@@ -1,5 +1,5 @@
 import React, {Component, useState} from "react";
-import 'App.css';
+import '../App.css';
 
 // 함수형
 // function Counter(props) {
