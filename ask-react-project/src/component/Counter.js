@@ -1,5 +1,6 @@
-import React, {Component, useState} from "react";
-import '../App.css';
+import React, {Component} from "react";
+import '../static/css/App.css';
+import {Button} from "antd";
 
 // 함수형
 // function Counter(props) {
@@ -58,12 +59,12 @@ class Counter extends Component {
         const {value} = this.state;
         return (
             <div>
-                <button name="plus" onClick={() => this.setState(actions.increment)}>
+                <Button name="plus" onClick={() => this.setState(actions.increment)}>
                     1씩 더하기
-                </button>
-                <button name="minus" onClick={() => this.setState(actions.decrement)}>
+                </Button>
+                <Button name="minus" onClick={() => this.setState(actions.decrement)}>
                     1씩 빼기
-                </button>
+                </Button>
                 <div style={{marginTop: "10px"}}>
                     <span>현재 숫자 : {value}</span>
                 </div>

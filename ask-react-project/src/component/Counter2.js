@@ -1,7 +1,7 @@
 import React, {Component} from "react";
 import PropTypes from "prop-types";
 
-class Counter_2 extends Component {
+class Counter2 extends Component {
     static propTypes = {
         onClick: PropTypes.func,
     }
@@ -17,4 +17,4 @@ class Counter_2 extends Component {
     }
 }
 
-export default Counter_2;
+export default Counter2;
