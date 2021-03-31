@@ -1,9 +1,10 @@
 import React, {Component} from "react";
 import {Button, Col, Input, List} from "antd";
+import Immer_test from "./Immer_test";
 
 class TodoList extends Component {
     state = {
-        todoList: ['study python', 'study django', 'study react'],
+        todoList: ['수정이랑 제주도 여행가기'],
         cur_value: '',
         holder_text: '할일을 입력해주세요.',
     }
@@ -69,7 +70,9 @@ class TodoList extends Component {
                                placeholder={holder_text}/>
                     </Col>
                 </Col>
+                <Immer_test/>
             </div>
+
         )
     }
 }
