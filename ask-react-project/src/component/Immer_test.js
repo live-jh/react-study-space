@@ -11,7 +11,7 @@ const immer_test = props => {
     //react
     const newState = [
         ...baseState.map((elem, index) => {
-            console.log(elem)
+            // console.log(elem)
             if (index === 1) return {...elem, done: true}
             else return elem
         }),
@@ -26,8 +26,8 @@ const immer_test = props => {
         draftState[1].done = true
     })
 
-    console.log(newState)
-    console.log(newState2)
+    // console.log(newState)
+    // console.log(newState2)
 
     return (
         <div>

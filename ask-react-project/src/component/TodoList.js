@@ -5,7 +5,7 @@ import {produce} from "immer";
 
 class TodoList extends Component {
     state = {
-        todoList: ['수정이랑 제주도 여행가기'],
+        todoList: [],
         cur_value: '',
         holder_text: '할일을 입력해주세요.',
     }
@@ -28,8 +28,8 @@ class TodoList extends Component {
             //     holder_text: "최소한 한글자 이상 입력해주세요 :)"
             // })
             // }
-            this.setState(
-                produce(this.state, draft => {
+            this.setState(prevState =>
+                produce(prevState, draft => {
                     const current = draft.cur_value;
                     if (current.trim().length > 0) {
                         draft.cur_value = "";
@@ -39,14 +39,16 @@ class TodoList extends Component {
                     }
                 })
             )
+            console.log(this.state.todoList)
         }
     }
 
     deleteTodo = (index) => {
+        console.log(typeof index)
         const {todoList} = this.state;
-        todoList.splice(index, 1)
+        const newTodoList = todoList.filter((item, i) => i !== index);
         this.setState({
-            todoList: todoList
+            todoList: newTodoList
         })
     }
 
