@@ -1,6 +1,7 @@
 import React, {Component} from "react";
 import {Button, Col, Input, List} from "antd";
 import Immer_test from "./Immer_test";
+import {produce} from "immer";
 
 class TodoList extends Component {
     state = {
@@ -16,17 +17,28 @@ class TodoList extends Component {
     }
     onKeyDown = e => {
         if (e.keyCode === 13) { //enter
-            const {todoList, cur_value} = this.state;
-            if (cur_value.trim().length > 0) {
-                this.setState({
-                    cur_value: '',
-                    todoList: [...todoList, cur_value],
+            // const {todoList, cur_value} = this.state;
+            // if (cur_value.trim().length > 0) {
+            //     this.setState({
+            //         cur_value: '',
+            //         todoList: [...todoList, cur_value],
+            //     })
+            // } else {
+            // this.setState({
+            //     holder_text: "최소한 한글자 이상 입력해주세요 :)"
+            // })
+            // }
+            this.setState(
+                produce(this.state, draft => {
+                    const current = draft.cur_value;
+                    if (current.trim().length > 0) {
+                        draft.cur_value = "";
+                        draft.todoList.push(current);
+                    } else {
+                        draft.holder_text = "최소한 한글자 이상 입력해주세요 :)"
+                    }
                 })
-            } else {
-                this.setState({
-                    holder_text: "최소한 한글자 이상 입력해주세요 :)"
-                })
-            }
+            )
         }
     }
 
