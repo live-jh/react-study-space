@@ -3,14 +3,15 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import './static/css/App.css';
 // import App from './App';
-import TodoList from './component/TodoList';
+// import TodoList from './component/TodoList';
 import reportWebVitals from './reportWebVitals';
+import App2 from "./App2";
 
 ReactDOM.render(
-  <React.StrictMode>
-    <TodoList />
-  </React.StrictMode>,
-  document.getElementById('root')
+    <React.StrictMode>
+        <App2/>
+    </React.StrictMode>,
+    document.getElementById('root')
 );
 
 // If you want to start measuring performance in your app, pass a function
