@@ -1,25 +1,40 @@
 import React, {Component} from "react"
 import axios from "axios";
+import EpisodeDetail from "./EpisodeDetail";
 
 class EpisodeList extends Component {
     state = {
         episodeList: [],
     }
 
-    componentDidMount() {
-        const apiUrl = "http://api.tvmaze.com/search/shows";
+    async componentDidMount() {
+        const apiUrl = "http://api.tvmaze.com/singlesearch/shows";
         const params = {
             q: 'mr-robot',
             embed: 'episodes',
         };
 
-        axios.get(apiUrl, {params})
-            .then(resposne => {
-                console.log(resposne)
-            })
-            .catch(error => {
-                console.log(error)
-            })
+        try {
+            const response = await axios.get(apiUrl, {params})
+            console.log(response)
+            const {data: {_embedded: {episodes}}} = response;
+            this.setState({
+                episodeList: episodes
+            });
+        } catch (e) {
+            console.error(e);
+        }
+
+        // axios.get(apiUrl, {params})
+        //     .then(resposne => {
+        //         const {data: {_embedded: {episodes}}} = response;
+        //         this.setState({
+        //             episodeList: episodes
+        //         })
+        //     })
+        //     .catch(error => {
+        //         console.log(error)
+        //     })
     }
 
     render() {
@@ -27,7 +42,12 @@ class EpisodeList extends Component {
         return (
             <div>
                 <h1>EpisodeList</h1>
-                {JSON.stringify(episodeList)}
+                {
+                    episodeList.map(episode =>
+                        <EpisodeDetail episode={episode}/>
+                    )
+                }
+                {/*{JSON.stringify(episodeList)}*/}
             </div>
         )
     }
