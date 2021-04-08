@@ -5,12 +5,13 @@ import './static/css/App.css';
 // import App from './App';
 // import TodoList from './component/TodoList';
 // import App2 from "./App2";
+// import EpisodeList from "./common/EpisodeList";
+import App3 from "./App3";
 import reportWebVitals from './reportWebVitals';
-import EpisodeList from "./common/EpisodeList";
 
 ReactDOM.render(
     <React.StrictMode>
-        <EpisodeList/>
+        <App3/>
     </React.StrictMode>,
     document.getElementById('root')
 );

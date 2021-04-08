@@ -1,6 +1,7 @@
 import React, {Component} from "react"
 import axios from "axios";
 import EpisodeDetail from "./EpisodeDetail";
+import {Col, Row} from "antd";
 
 class EpisodeList extends Component {
     state = {
@@ -42,12 +43,15 @@ class EpisodeList extends Component {
         return (
             <div>
                 <h1>EpisodeList</h1>
-                {
-                    episodeList.map(episode =>
-                        <EpisodeDetail episode={episode}/>
-                    )
-                }
-                {/*{JSON.stringify(episodeList)}*/}
+                <Row>
+                    {
+                        episodeList.map(episode =>
+                            <Col span={4}>
+                                <EpisodeDetail episode={episode}/>
+                            </Col>
+                        )
+                    }
+                </Row>
             </div>
         )
     }
