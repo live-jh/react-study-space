@@ -1,6 +1,6 @@
 import React, {useState, useReducer} from "react";
 
-//redux, dispatch
+//redux, dispatch example
 const SET_NAME = "SET_NAME";
 const SET_AGE = "SET_AGE";
 

@@ -2,7 +2,7 @@ import React, {createContext, useContext} from "react";
 
 const MessageContext = createContext();
 
-//ContextAPI Example
+// ContextAPI Example
 // const App6 = () => (
 //     <MessageContext.Provider value="Provider Values">
 //         <Level1 message="ContextAPI in React"/>

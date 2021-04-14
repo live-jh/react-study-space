@@ -1,5 +1,6 @@
 import {useCallback, useEffect, useState} from "react";
 
+//function Component
 function PostDetailComponent({post}) {
     const {title, content} = post;
     return (

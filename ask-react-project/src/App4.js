@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from "react";
 
+//current Time, current Width
 const useCurrentTime = () => {
     const [currentTime, setCurrentTime] = useState();
     useEffect(() => {
