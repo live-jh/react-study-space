@@ -1,5 +1,6 @@
 import React, {createContext, useContext, useState} from "react";
 
+//ContextAPI example
 const CounterContext = createContext();
 
 const App7 = () => {

@@ -1,5 +1,6 @@
 import React, {createContext, useContext} from "react";
 
+//hoc component example
 const MessageContext = createContext();
 
 // ContextAPI Example
@@ -19,8 +20,6 @@ const MessageContext = createContext();
 //     </div>
 // );
 
-
-//hoc component example
 const Level2Wrapper = () => {
     const message = useContext(MessageContext); //소비하는 userContext 세팅
     return (
