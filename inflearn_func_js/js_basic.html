@@ -1,0 +1,53 @@
+<script>const log = console.log;</script>
+
+<script>
+    //평가
+    const num = 1 + 2
+    const num_arr = [1, 2, num]
+    const num_arr_2 = [1, 2, num, ...num_arr]
+    const num_arr_3 = [1, 2, num, num_arr_2]
+    log(num)
+    log(num_arr)
+    log(num_arr_2)
+    log(num_arr_3)
+    const a = 10;
+    const add_50 = a => a + 50; // same (a) => { return a + 50 } 
+    const init = add_50(a);
+    log(init)
+    log("-------------FIRST CLASS--------------")
+    //일급
+    const func_1 = () => { return () => { return 10 } };
+    // const f1 = () => () => 10; // same = () => { return () => { return 10 } }
+    log(func_1()()) // 10
+    const tmp_func_1 = func_1()
+    log(tmp_func_1)
+    log(tmp_func_1()) // 원하는 시점에 평가(함수())해서 결과를 나타냄
+
+    //고차함수
+    const apply1 = f => f(1); // 함수를 인자로 받아서 1을 가지고 함수 실행
+    const add2 = a => a + 2;
+    log(apply1(add2)) // apply1 = (a => a + 2)f(1)
+    log(apply1(b => b * 0))
+
+    log("-------------HOC--------------")
+    log("-------------함수를 인자로 받아서 실행--------------")
+
+    //여러번 반복 실행하는 고차함수
+    const time = (f, n) => {
+        let i = -1;
+        while (++i < n) f(i)
+    }
+
+    time(log, 5)
+    time(a => log(a * 3), 5) // 함수 자체를 인자로 보냄
+    log("-------------함수를 생성해 리턴(CLOSURE)--------------")
+
+    //클로저란 b => a + b 함수가 a를 계속 기억하고 있는 것을 의미
+    // const addMaker = a => b => a + b; // a를 받고 b를 받아 함수를 리턴함
+    const addMaker = (a) => {
+        return (b) => { return a + b } //내부에서 함수를 생성해 리턴
+    };
+    const add10 = addMaker(10); //인자를 숫자값으로 전달
+    log(add10(5));
+    log(add10(10));
+</script>
