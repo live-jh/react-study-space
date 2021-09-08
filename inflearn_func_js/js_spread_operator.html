@@ -1,0 +1,12 @@
+<script>const log = console.log;</script>
+
+<script>
+    // 객체나 배열 값을 펼쳐서 넘기는 용도 ...
+    const arr = [1, 2, 3];
+    const set = new Set([1, 2, 3]);
+    const map = new Map([['a', 1], ['b', 2], ['c', 3]]);
+    const demo = [3, 4, 10]
+    log([...demo, ...arr, ...set, ...map])
+    log([...demo, ...arr, ...set, ...map.values()])
+    log([...demo, ...arr, ...set, ...map.keys()])
+</script>

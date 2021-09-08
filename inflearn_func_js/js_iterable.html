@@ -20,43 +20,66 @@
 
     log('Set -----------');
     const set = new Set([1, 2, 3]);
+    for (const a of set) log(a);
     // log(set)
-    // for (const a of set) log(a);
     // console.clear()
 
     // log('Map -----------');
     const map = new Map([['a', 1], ['b', 2], ['c', 3]]);
     let iter_map = map[Symbol.iterator]();
-    log(iter_map.next())
-    log(iter_map.next())
-    log(iter_map.next()) //value: (2) ["c", 3]
+    // log(iter_map.next())
+    // log(iter_map.next())
+    // log(iter_map.next()) //value: (2) ["c", 3]
+    // let it = map.values();
+    // let iter_map_values = it[Symbol.iterator]();
+    // log(iter_map_values.next()) // {value: 1, done: false}
+    // log(iter_map_values.next())
+    // log(iter_map_values.next())
     // for (const a of map) log(a); // same entries
     // for (const a of map.keys()) log(a);
     // for (const a of map.values()) log(a);
     // for (const a of map.entries()) log(a);
-    // console.clear();
+    console.clear();
 
 
+    // 사용자 정의 iterable
+
+    const iterable = {
+        // iterable의 Symbol.iterator 
+        [Symbol.iterator]() {
+            let i = 3;
+            return {
+                // next method
+                next() {
+                    // i가 마지막이면 done true
+                    return i === 0 ? { done: true } : { value: i--, done: false }
+                },
+                // 존재하지 않을 시 iterator is not iterable
+                [Symbol.iterator]() { return this; } //자기 자신 return 즉 iterator 역시 Symbol.iterator를 가지고 있어야함
+            }
+        }
+    }
     let iterator = iterable[Symbol.iterator]();
-    iterator.next();
-    iterator.next();
+    log(iterator.next());
     // log(iterator.next());
     // log(iterator.next());
-    // log(iterator.next());
-    for (const a of iterator) log(a);
+
+    for (const a of iterator) log(a)
+
 
     // const arr2 = [1, 2, 3];
-    // let iter2 = arr2[Symbol.iterator]();
-    // iter2.next();
-    // log(iter2[Symbol.iterator]() == iter2);
-    // for (const a of iter2) log(a);
+    // let iter = arr2[Symbol.iterator]();
+    // console.log(iter[Symbol.iterator]); // iterator 역시 Symbol.iterator를 가지고 있다.
+    // console.log(iter[Symbol.iterator]() === iter); // true iterator 실행값이 자기자신
+    // for (const a of iterator) log(a);
 
-    for (const a of document.querySelectorAll('*')) log(a);
+    // for (const a of document.querySelectorAll('*')) log(a); //documents array
     const all = document.querySelectorAll('*');
     let iter3 = all[Symbol.iterator]();
+    // for (const a of iter3) log(a);
+    log(iter3.next().value);
     log(iter3.next());
-    log(iter3.next());
-    log(iter3.next());
+    // log(iter3.next());
 
 
 
