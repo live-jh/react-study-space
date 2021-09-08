@@ -2,8 +2,62 @@
 <!-- for i++ => for of -->
 <script>const log = console.log;</script>
 <script>
+    log('Arr -----------');
     const list = [1, 2, 3, 4];
     for (num of list) {
         log(num)
     }
+    console.clear();
+
+
+    log('Arr -----------');
+    const arr = [1, 2, 3];
+    let iter1 = arr[Symbol.iterator]();
+    log(iter1.next()) // 1개 사용했기에 아래 for에선 2개만 나옴
+    for (const a of iter1) log(a);
+    // console.clear()
+
+
+    log('Set -----------');
+    const set = new Set([1, 2, 3]);
+    // log(set)
+    // for (const a of set) log(a);
+    // console.clear()
+
+    // log('Map -----------');
+    const map = new Map([['a', 1], ['b', 2], ['c', 3]]);
+    let iter_map = map[Symbol.iterator]();
+    log(iter_map.next())
+    log(iter_map.next())
+    log(iter_map.next()) //value: (2) ["c", 3]
+    // for (const a of map) log(a); // same entries
+    // for (const a of map.keys()) log(a);
+    // for (const a of map.values()) log(a);
+    // for (const a of map.entries()) log(a);
+    // console.clear();
+
+
+    let iterator = iterable[Symbol.iterator]();
+    iterator.next();
+    iterator.next();
+    // log(iterator.next());
+    // log(iterator.next());
+    // log(iterator.next());
+    for (const a of iterator) log(a);
+
+    // const arr2 = [1, 2, 3];
+    // let iter2 = arr2[Symbol.iterator]();
+    // iter2.next();
+    // log(iter2[Symbol.iterator]() == iter2);
+    // for (const a of iter2) log(a);
+
+    for (const a of document.querySelectorAll('*')) log(a);
+    const all = document.querySelectorAll('*');
+    let iter3 = all[Symbol.iterator]();
+    log(iter3.next());
+    log(iter3.next());
+    log(iter3.next());
+
+
+
 </script>
