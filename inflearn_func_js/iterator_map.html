@@ -1,0 +1,67 @@
+<script>const log = console.log;</script>
+
+<script>
+    const products = [
+        { name: '반팔티', price: 15000 },
+        { name: '긴팔티', price: 20000 },
+        { name: '핸드폰케이스', price: 15000 },
+        { name: '후드티', price: 30000 },
+        { name: '바지', price: 25000 }
+    ];
+
+    // 기존 map
+    const demo_map = products.map(elem => elem.name)
+
+    // custom map
+    const map = (f, iter) => { //f -> 함수를 받아 함수내에서 조건 처리
+        let res = []
+        for (const it of iter) { // iterator이며 곧 => iter[Symbol.iterator]()
+            res.push(f(it)); // 함수에게 값을 위임
+        }
+        return res;
+    }
+
+    // let names = [];
+    // for (const p of products) {
+    //     names.push(p.name)
+    // }
+    // log(names)
+    log(map(p => p.name, products))
+
+    // let prices = [];
+    // for (const p of products) {
+    // prices.push(p.price)
+    // }
+    // log(prices)
+    log(map(p => p.price, products))
+
+    // 다형성 실제 querySelectorAll('*')이 map을 가지고 있지 않지만 custom을 통해 구현 가능
+    log(map(el => el.nodeName, document.querySelectorAll('*'))) //querySelectorAll('*')가 iterable 프로토콜을 따르는 것을 의미
+
+    const it = document.querySelectorAll('*')[Symbol.iterator]();
+    log(it.next());
+    log(it.next());
+    log(it.next());
+
+    //generator 함수
+    function* gen() {
+        yield 1;
+        if (false) yield 2;
+        yield 3;
+    }
+    // iterable 프로토콜을 따르는 함수를 사용하는 것은 다른 많은 헬퍼 함수들과의 조합이 다양해지는 것을 의미한다.
+    log(map(e => e * e, gen()))
+
+
+    console.clear();
+    let m = new Map();
+    m.set('a', 10)
+    m.set('b', 20)
+
+    log(m)
+    log(new Map(map(([k, v]) => [k, v * 2], m)));
+
+
+
+
+</script>

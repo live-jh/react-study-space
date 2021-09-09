@@ -1,0 +1,35 @@
+<script>const log = console.log;</script>
+
+<script>
+    const products = [
+        { name: '반팔티', price: 15000 },
+        { name: '긴팔티', price: 20000 },
+        { name: '핸드폰케이스', price: 15000 },
+        { name: '후드티', price: 30000 },
+        { name: '바지', price: 25000 }
+    ];
+
+    const nums = [1, 2, 3, 4, 5];
+
+    // let total = 0;
+    // for (const n of nums) {
+    //     total = total + n;
+    // }
+    // log(total);
+
+    const add = (a, b) => a + b;
+    const reduce = (f, acc, iter) => {
+        if (!iter) {
+            iter = acc[Symbol.iterator](); //인자로 보낸 acc에 iterator로 할당
+            acc = iter.next().value;       //iterator의 첫번째 요소를 acc로 할당
+        }
+        for (const it of iter) {
+            acc = f(acc, it); // func 안에 2개 인자 보내기 (add)
+        }
+        return acc; //acc 누적값
+    }
+
+    log(reduce(add, nums)) // 도전
+    log(reduce(add, 0, nums)) // add(add(add(0, 1), 2), 3) 의미 
+    log(reduce((total_price, product) => total_price + product.price, 0, products));
+</script>
