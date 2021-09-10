@@ -30,3 +30,5 @@ const reduce = (f, acc, iter) => {
     }
     return acc; //acc 누적값
 }
+
+const add = (a, b) => a + b;

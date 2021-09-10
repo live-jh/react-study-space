@@ -1,0 +1,33 @@
+<script src="./js/fx.js"></script>
+<script>
+    // const go = (...args) => reduce((a, f) => f(a), args);
+    // const pipe = (f, ...fs) => (...as) => go(f(...as), ...fs);
+
+    // reduce (합치기), a는 0, f는 함수, reduce엔 앞에 연산, 뒤에 함수를 넣는다
+    const go = (...args) => reduce((a, f) => f(a), args); // (f(a)[연산], args[iter])
+    go(
+        add(0, 1),
+        a => a + 1,
+        a => a + 10,
+        log
+    )
+
+    //내부에 전달받은 여러 함수를 이용해 결과값(함수)을 축약, 함수 리턴
+    // a 인자를 받아 go 함수를 호출하는데 인자 받은 함수를 그대로 넘겨준다
+    // a 인자는 pipe의 첫번째 인자이다
+    const pipe = (f, ...funcs) => (...as) => {
+        log(...as) // func의 파라미터
+        log(f) // pipe의 첫번째 인자
+        log(funcs) // pipe의 2,3번째 인자
+        return go(f(...as), ...funcs)
+    };
+
+    const func = pipe(
+        (a, b) => a + b, //go add(0, 1)과 같은 의미 (인자 2개 이상 )
+        a => a + 1,
+        a => a + 10,
+    )
+    log(func(0, 1))
+
+
+</script>
