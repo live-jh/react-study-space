@@ -1,0 +1,86 @@
+<script src="./js/fx.js"></script>
+<script>
+    //callack
+    //(data , function) 함수를 인자로 전달해서 그 함수에게 연산을 위임
+    function add10(a, callback) {
+        setTimeout(() => callback(a + 10), 100);
+    }
+
+    //단일 실행
+    // add10(5, res => {
+    //     log(res)
+    // })
+
+    //연속 실행
+    //promise 일급 객체의 차이 
+    //callback은 변수에 담았을 때 내부적으로 어떤 일이 발생하는지 모름
+    // let a = add10(5, res => {
+    //     add10(res, res => {
+    //         add10(res, res => {
+    //             log(res)
+    //         })
+    //     })
+    // })
+
+    // log(a) //undefined
+    // add10(5, _ => _); //undefined
+
+
+
+    //promise
+    //연산에 필요한 인자만 받음, add20 함수는 Promise를 생성하고 실행해서 return
+    function add20(a) {
+        return new Promise(resolve => // 사실상 resolve 함수가 callback 역할
+            setTimeout(() => resolve(a + 20), 100)
+        );
+    }
+
+    //단일 실행
+    // add20(5).then(log)
+
+    //연속 실행
+    //promise 일급 객체의 차이 
+    //callback은 변수에 담았을 때 Promise 반환
+    // let b = add20(5)
+    //     .then(add20)
+    //     .then(add20)
+    //     .then(log)
+
+    // log(b) // Promise 객체
+    let c = add20(5, _ => _); // Promise 객체
+    let d = c.then(a => a - 3); // Promise 객체
+    let h = d.then(b => b * b); // Promise 객체
+    // setTimeout(() => console.clear(), 1000);
+
+
+    // 딜레이 100초 함수
+    const deley100 = a => new Promise(resolve =>
+        setTimeout(() => resolve(a), 1000)
+    )
+
+    //인자로 받은 a 데이터 값이 Promise면 then()에 함수 전달 후 호출 아니면 그대로 함수에 a 연산
+    const go1 = (a, f) => a instanceof Promise ? a.then(f) : f(a)
+    const add5 = a => a + 5;
+
+    //default
+    // log(go1(10, add5));
+    // let z = go1(10, add5);
+    // log(z)
+    const n1 = 10;
+    // go1(go1(n1, add5), log); //67, 68 축약 버전
+
+    const demo = n => go1(go1(n, add5), log);
+    demo(n1)
+
+    //promise 
+    // log(go1(deley100(10), add5));
+    // let x = go1(deley100(10), add5);
+    // x.then(log) // same log(z)
+    const n2 = deley100(10)
+    // go1(go1(n2, add5), log); //77, 78 축약 버전
+    demo(n2)
+
+
+
+
+</script>
