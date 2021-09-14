@@ -1,0 +1,27 @@
+<script src="./js/fx.js"></script>
+<script>
+  //monad
+  //함수 합성
+
+  const g = a => a + 1;
+  const f = a => a * 2;
+
+  log(f(g(1)));
+  // NaN 값이 어떤 것이 넘어올지 모름 (값에 대한 변조에 안정성 고려 -> 모나드)
+  log(f(g()));
+
+  // 외부에 영향을 미치지 않게끔 하는 방법
+  // map함수가 g,f 함수를 인자로 받아서 arr를 return, 즉 [] 안에 값은 지속적으로 arr를 반환하고 로그를 찍는다
+  [1].map(g).map(f).forEach(r => log(r));
+  [].map(g).map(f).forEach(r => log(r)); //값이 찍히지 않음 (monad)
+  // 2, 3, 4 | 3 | 3 * 2 = 6 
+  [1, 2, 3].map(g).filter(a => a % 2).map(f).forEach(r => log(r)); //값이 찍히지 않음 (monad)
+
+
+  // promise
+  Promise.resolve(1).then(g).then(f).then(r => log(r)) // same [1].map(g).map(f).forEach(r => log(r))
+
+
+
+
+</script>

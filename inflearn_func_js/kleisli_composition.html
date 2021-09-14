@@ -1,0 +1,38 @@
+<script src="./js/fx.js"></script>
+<script>
+    let users = [
+        { id: 1, name: 'aa' },
+        { id: 2, name: 'bb' },
+        { id: 3, name: 'cc' }
+    ];
+
+    //유저를 id 찾는 함수
+    const getUserById = id => find(u => u.id == id, users) || Promise.reject("not exists");
+
+    const f = ({ name }) => name; // "항상" 객체내에 name을 추출해서 return
+    const g = getUserById; // 유저 찾는 id 함수
+
+    // const fg = id => f(g(id));
+    // const fg = id => Promise.resolve(id).then(g).then(f);
+    const fg = id => Promise.resolve(id).then(g).then(f).catch(a => a);
+
+    fg(2).then(log);
+
+
+
+    // log(fg(2)); // 'bb'
+    // users.pop()
+    // users.pop() // 값이 변형
+    // log(fg(2)); // 'name' of undefined or null error -> 이런 상태를 방지
+
+
+
+
+
+    // setTimeout(function () {
+    //     users.pop();
+    //     users.pop();
+    //     fg(2).then(log);
+    // }, 10);
+
+</script>
